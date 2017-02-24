@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block section %}
+    <h1> Registrar Usuario</h1>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            {{ form.as_p }}
+        </div>
+        <br>
+        <div class="input-group">
+            <label for="id_profile-team">Equipo:</label>
+            <div class="form-control">{{ form_profile.team }}</div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <script>
+        $('#register').hide()
+    </script>
+
+
+{% endblock %}

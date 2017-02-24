@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<div id="writePost">
+    <h1 id="reply-title">Añadir Resultado</h1>
+    <form method="post" id="commentform">
+        {% csrf_token %}
+        <input type="hidden" id="noMostrar" value="{{form.text}}" >
+        <input type="hidden" value="{{pk}}" name="jornada_id">
+        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Añadir" id="botonsubmit">
+    </form>
+</div> <!-- /respond -->
+<script>
+    $('#noMostrar').hide()
+</script>
+
+{% endblock %}

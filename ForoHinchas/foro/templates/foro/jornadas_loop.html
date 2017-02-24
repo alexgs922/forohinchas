@@ -1,0 +1,11 @@
+{% for jornada in jornadas_list %}
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="{{ jornada.photo }}" alt="{{ jornada.title }}" width="50px">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><a href="{% url 'jornada_detail' jornada.pk %}">{{ jornada.title }}</a></h4>
+    <p class="description">{{ jornada.description }}</p>
+  </div>
+{% endfor %}

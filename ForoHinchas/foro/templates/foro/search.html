@@ -1,0 +1,6 @@
+<ul class="list-group" id="results-search">
+  {% for jornada in jornadas %}
+  <li class="list-group-item"><a href="{% url 'jornada_detail' jornada.pk %}">{{jornada.title}}</a></li>
+  {% endfor %}
+</ul>
+

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<div id="writePost">
+    <h1 id="reply-title">Añade una Respuesta</h1>
+    <form method="post" id="commentform">
+        {% csrf_token %}
+        <div class="form-group" id="formComment">
+            <label for="comment">Comentario:</label>
+            {{ form.as_p}}
+        </div>
+        <input type="hidden" value="{{pk}}" name="jornada_id">
+        <input class="btn btn-primary" type="submit" value="Enviar" id="botonsubmit">
+
+    </form>
+</div> <!-- /respond -->
+
+
+{% endblock %}

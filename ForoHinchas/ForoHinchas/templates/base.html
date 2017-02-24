@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Bienvenido a ForoHinchas {% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ajuste.css' %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon2.png' %}"/>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}" id="foroHincha">ForoHinchas</a>
+          <span id="logo" class="navbar-left"><img src="{% static 'images/laliga.png' %}" width="40px"></span>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+      {% if user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_superuser %}
+                <li><a href="{% url 'add_jornada' %}">Nueva Jornada</a></li>
+            {% endif %}
+          </ul>
+          <p class="navbar-text" id="username"><span class="glyphicon glyphicon-user"></span> &nbsp;{{ user.username }}</p>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'users_logout' %}">Salir</a></li>
+          </ul>
+      {% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'users_register' %}" id="register">Registrar</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      {% endif %}
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        {% block section %} {% endblock %}
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">ForoHinchas Inc &copy; Todos los derechos reservados</span>
+      </div>
+    </footer>
+</body>
+</html>

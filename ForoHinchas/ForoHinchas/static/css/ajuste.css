@@ -1,0 +1,71 @@
+
+.footer{
+  padding-top: 7%;
+  padding-right: 31%;
+}
+
+#listaJornadas{
+    margin-top: 5%;
+}
+
+#title{
+    margin-top: 6%;
+}
+
+.pagination{
+    padding-top: 4%;
+}
+
+#buttonInline{
+    float: left;
+    margin-right: 2%;
+}
+
+p>[for=comment] {
+    display: none;
+}
+
+p>[for=id_usr] {
+    display: none;
+}
+
+p>[for=id_pwd] {
+    display: none;
+}
+
+#formComment{
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+#id_usr{
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+#id_usr-username{
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+#id_usr-first_name{
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+#id_usr-password{
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+#logo{
+    padding-top: 5px !important;
+}
+
+#username{
+    color: white;
+}
+
+#foroHincha{
+    color: white;
+}

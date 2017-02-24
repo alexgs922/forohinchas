@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} Borrar Jornada {% endblock %}
+
+{% block section %}
+    <form method="post">
+        {% csrf_token %}
+        ¿Estás seguro que deseas borrar la "{{ jornada.title }}"?
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+    </form>
+{% endblock %}

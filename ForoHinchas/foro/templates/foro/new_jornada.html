@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Añadir jornada {% endblock %}
+
+{% block section %}
+
+    <h1 id="title">Añadir jornada</h1>
+
+    {% if success_message %} <span style="color:green"> {{ success_message | safe }} </span> {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button  type="submit" class="btn btn-primary">Añadir jornada</button>
+        </div>
+    </form>
+
+{% endblock %}

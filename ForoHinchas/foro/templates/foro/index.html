@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block section %}
+    <h1 id="title">Jornadas</h1>
+
+    <div class="media" id="listaJornadas">
+        {% include 'foro/jornadas_loop.html' with jornadas_list=jornadas_list %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if jornadas_list.has_previous %}
+                <a href="?page={{ jornadas_list.previous_page_number }}" aria-label="Previous"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ jornadas_list.number }} of {{ jornadas_list.paginator.num_pages }}.
+            </span>
+
+            {% if jornadas_list.has_next %}
+                <a href="?page={{ jornadas_list.next_page_number }}" aria-label="Next"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+            {% endif %}
+        </span>
+    </div>
+
+    <hr>
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control" id="search-input" placeholder="Buscar" aria-describedby="sizing-addon1">
+    </div>
+    <br>
+    <div id="main-results-search"></div>
+
+    <script>
+    // Implement realtime search with `keyup` function.
+
+    $('#search-input').keyup(function (event) {
+      var query =($('#search-input').val());
+
+      if (query != '' || query != ' ') {
+        $.ajax({
+           type: 'GET',
+           url: '{% url "search" %}',
+           data: {
+             'csrfmiddlewaretoken': '{{ csrf_token }}',
+             'q': query
+           },
+           success: function(data) {
+              $('#main-results-search').html(data);
+           },
+           error: function(data) {
+              console.log(data);
+           }
+         });
+      }
+    });
+
+    // Removing the element after search
+    // and when user clicked another/outside of this element below.
+
+    $(document).click(function(event) {
+      $is_inside = $(event.target).closest('#main-results-search').length;
+
+      if( event.target.id == 'search-input' || $is_inside ) {
+        return;
+      }else {
+        $('#results-search').remove();
+      }
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ jornada.title }} {% endblock %}
+
+{% block section %}
+    <h1 id="title">{{ jornada.title }}</h1>
+    <h3>{{ jornada.description }}</h3>
+
+    {% for post in posts %}
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ post.author }} - {{ post.create_at }}</h3>
+        </div>
+        <div class="panel-body">
+            <p> {{ post.text }}</p>
+            {% if post.url is None %}
+
+            {% else %}
+                <a href="{{ post.url }}">Ver Crónica</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}" aria-label="Previous"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}" aria-label="Next"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+            {% endif %}
+        </span>
+    </div>
+
+    <br>
+    <a class="btn btn-default" href="{% url 'new_post' jornada.pk %}" id="buttonInline">Escribir comentario</a>
+    {% if user.is_superuser %}
+    {% else %}
+    <a class="btn btn-primary" href="{% url 'post_bsp' jornada.pk %}" id="buttonInline">Postear resultado de mi equipo</a>
+    {% endif %}
+    {% if user.is_superuser %}
+    <a class="btn btn-danger" href="{% url 'delete_jornada' jornada.pk %}" id="buttonInline">Borrar Jornada</a>
+    {% endif %}
+{% endblock %}
